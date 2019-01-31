@@ -58,7 +58,10 @@ class PdfTk {
              * @returns {String} Path of the newly created temp file.
              */
             const writeTempFile = srcFile => {
-                const tmpPath = path.join(__dirname, './node-pdftk-tmp/');
+                let pathPrefix = __dirname;
+                if (process.env.PDF_TEMP_DIR)
+                    pathPrefix = process.env.PDF_TEMP_DIR;
+                const tmpPath = path.join(pathPrefix, './node-pdftk-tmp/');
                 const uniqueId = crypto.randomBytes(16).toString('hex');
                 const tmpFile = `${tmpPath}${uniqueId}.pdf`;
                 fs.writeFileSync(tmpFile, srcFile);
