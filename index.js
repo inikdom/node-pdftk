@@ -202,7 +202,7 @@ class PdfTk {
                 ]);
                 body = Buffer.concat([
                     body,
-                    PdfTk.stringToBuffer(prop, 'binary'),
+                    PdfTk.stringToBuffer(prop.toString(), 'binary'),
                 ]);
                 body = Buffer.concat([
                     body,
@@ -210,7 +210,7 @@ class PdfTk {
                 ]);
                 body = Buffer.concat([
                     body,
-                    PdfTk.stringToBuffer(data[prop], 'binary'),
+                    PdfTk.stringToBuffer(data[prop].toString(), 'binary'),
                 ]);
                 body = Buffer.concat([
                     body,
@@ -253,9 +253,9 @@ class PdfTk {
             /* istanbul ignore else  */
             if (data.hasOwnProperty(prop)) {
                 const begin = PdfTk.stringToBuffer('InfoBegin\nInfoKey: ');
-                const key = PdfTk.stringToBuffer(prop);
+                const key = PdfTk.stringToBuffer(prop.toString());
                 const newline = PdfTk.stringToBuffer('\nInfoValue: ');
-                const value = PdfTk.stringToBuffer(data[prop]);
+                const value = PdfTk.stringToBuffer(data[prop].toString());
                 const newline2 = PdfTk.stringToBuffer('\n');
                 info.push(begin, key, newline, value, newline2);
             }
